@@ -1,0 +1,3 @@
+[submodule "submodules/42_ft_printf"]
+	path = submodules/42_ft_printf
+	url = https://github.com/FreddyMSchubert/42_ft_printf
