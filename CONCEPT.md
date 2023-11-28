@@ -8,8 +8,10 @@ $> ./pipex infile "grep a1" "wc -w" outfile
 Should behave like: < infile grep a1 | wc -w > outfile
 ```
 
+0 = read
+1 = write
+
 int executecommand (int infd, char *command, int outfd)
-	ensure the command exists and can be executed using ACCESS
 	pipe
 	fork
 	in parent, close pipe write
@@ -20,6 +22,7 @@ int executecommand (int infd, char *command, int outfd)
 	else
 		set child output to outfd
 	turn child into a process using execve
+	if its negative, the command is fucked and probably wrong. exit.
 	in child, close pipe write (done implicitly if execve ends)
 	in parent, waitpid for the child using returned pid from fork
 	if (outfd == -1)

@@ -6,18 +6,11 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 06:26:25 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/28 08:12:28 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:13:16 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-
-// @brief	Exits the program, but not before printing an informative error
-void	exit_error(char *message)
-{
-	ft_printf("\033[31m%s\033[0m", message);
-	exit(EXIT_FAILURE);
-}
 
 /*
 	@brief		Executes an inputted shell command. Input gets read from in_fd.
@@ -25,19 +18,28 @@ void	exit_error(char *message)
 				out_fd is -1, otherwise it will simply be out_fd.
 				Returns -1 (invalid fd) if it encounters an error
 */
-int	execute_command(int in_fd, char *command, int out_fd)
+static int	execute_command(int in_fd, char *cmd, int out_fd, char **envp)
 {
-	(void)in_fd;
-	(void)command;
-	(void)out_fd;
-	return (1);
+	int		pipefd[2];
+	pid_t	pid;
+
+	if (pipe(pipefd) == -1)
+		exit_error("ERROR: Creating of pipe failed.\n");
+	pid = fork();
+	if (pid == 0)
+		children_routine(pipefd, create_cmd_struct(envp, cmd), in_fd, out_fd);
+	else if (pid > 0)
+		return (parent_routine(pid, pipefd, out_fd));
+	else
+		exit_error("ERROR: Forking failed.\n");
+	return (-1);
 }
 
 /*
 	@brief		Main function.
 	@brief		Used to loop through input.
 */
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	int		in_fd;
 	int		out_fd;
@@ -53,13 +55,15 @@ int	main(int argc, char **argv)
 	counter = 2;
 	while (counter < argc - 2)
 	{
-		in_fd = execute_command(in_fd, argv[counter], -1);
+		in_fd = execute_command(in_fd, argv[counter], -1, envp);
 		if (in_fd < 0)
 			exit_error("ERROR executing one of the inputted commands.\n");
 		counter++;
 	}
-	in_fd = execute_command(in_fd, argv[counter], out_fd);
+	in_fd = execute_command(in_fd, argv[counter], out_fd, envp);
 	if (in_fd < 0)
 		exit_error("ERROR executing last command or writing to output file.\n");
+	close(in_fd);
+	close(out_fd);
 	return (0);
 }

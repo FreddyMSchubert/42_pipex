@@ -6,7 +6,8 @@ OBJ = $(SRC:.c=.o)
 CFLAGS		:= -Wall -Werror -Wextra \
 				-Wunreachable-code -Ofast -g -fsanitize=address
 HEADER		:= -I../include/
-LIBS		:=	-L../submodules/42_ft_printf/ -lftprintf
+LIBS		:=	-L../submodules/42_ft_printf/ -lftprintf \
+				-L../submodules/42_libft/ -lft
 
 $(NAME): $(OBJ)
 	@cc $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
