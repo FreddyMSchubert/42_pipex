@@ -1,5 +1,12 @@
 # pipex by @fschuber Changelog
 
+### v0.1.3 - 29.11.23
+- Made input side of here_doc work. It wasn't that hard. It's all in here_doc.c
+- made a fix to file opening by adding O_TRUNC, this now clears the output file every time we run the program in non-here_doc-mode.
+- Using O_APPEND flag I now also append things in here_doc. that means im done with the bonus as well!
+- Added a tricky_cases.md file which I'll be doing for upcoming projects as well.
+- Made my program create the output files if they are not there.
+
 ### v0.1.2 - 29.11.23
 - Added get_next_line to be able to easily read from stdin, which will be helpful for heredoc
 	- to do this, i updated gnl to be a library for easy use now and in the future (-> https://github.com/FreddyMSchubert/42_get_next_line)

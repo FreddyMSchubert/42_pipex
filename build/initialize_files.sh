@@ -2,11 +2,9 @@
 
 # File paths
 input_file="../infile"
-output_file="../outfile"
 
 # Check if infile and outfile exist, create them if not
 [ -f "$input_file" ] || touch "$input_file"
-[ -f "$output_file" ] || touch "$output_file"
 
 # Check for the argument
 if [ -z "$1" ]; then
@@ -33,6 +31,3 @@ random_string=$(awk -v len=$1 'BEGIN {
 
 # Add the random string to input_file
 echo "$random_string" > "$input_file"
-
-# Clear the output file
-> "$output_file"

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 07:39:06 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/29 08:49:41 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:25:00 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ typedef struct s_cmd_path {
 	char	**args;
 }				t_cmd_path;
 
+// MAIN COMMON STUFF
+int			execute_command(int in_fd, char *cmd, int out_fd, char **envp);
+
 // HERE DOC FUNCTIONALITY
-void		here_doc(int argc, char **argv, char **envp);
+int			here_doc(int argc, char **argv, char **envp);
 
 // UTILS
 
 void		exit_error(char *message);
 void		pex_free_rec(void **blob);
+int			writestr(int fd, char	*message);
 
 // PARENT
 
