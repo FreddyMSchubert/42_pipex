@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:12:00 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/28 10:41:22 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:20:10 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	exit_error(char *message)
 	int		counter;
 
 	counter = 0;
-	while (message[counter] != '\0')
-		if (write(STDERR_FILENO, &message[counter++], 1) == -1)
-			if (write(STDERR_FILENO, "Writing failed!", 16) == -1)
-				write(STDERR_FILENO, "Errm... Houston? HOUSTON!", 26);
+	while (VERBOSE == 1 && message[counter] != '\0')
+		write(STDERR_FILENO, &message[counter++], 1);
+	if (VERBOSE == 0)
+		write(STDERR_FILENO, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 

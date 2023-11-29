@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parent.c                                           :+:      :+:    :+:   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 10:40:30 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/28 17:13:27 by fschuber         ###   ########.fr       */
+/*   Created: 2023/11/28 17:34:45 by fschuber          #+#    #+#             */
+/*   Updated: 2023/11/29 08:48:25 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
-
-// @brief		Parenting is hard.
-// @brief		Handles parents created by execute_command function.
-int	parent_routine(pid_t pid, int pipefd[2], int out_fd)
+void	read_from_input_until_delimiter()
 {
-	close(pipefd[1]);
-	waitpid(pid, NULL, 0);
-	if (VERBOSE == 1)
-		ft_printf("LOGGER: Child process %d terminated.\n", pid);
-	if (out_fd == -1)
-		return (pipefd[0]);
-	return (out_fd);
+	
+}
+
+// get lines of input using gnl.
+// append each line to a pipe.
+// when the limiter is there, write everything before to the pipe and start execute_command process
+// probably gonna need some new functions for the last iteration where things get appended.
+void	here_doc(int argc, char **argv, char **envp)
+{
+
 }

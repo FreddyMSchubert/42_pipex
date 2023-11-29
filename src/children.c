@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:40:30 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/28 11:28:02 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:27:44 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_cmd_path	*create_cmd_struct(char	**envp, char	*cmd)
 		exit_error("Problem allocating cmd for command path.\n");
 	path->path = get_command_path(envp, split_cmd[0]);
 	path->args = split_cmd;
+	if (VERBOSE == 1)
+		ft_printf("LOGGER: Found command at '%s'.\n", path->path);
 	return (path);
 }
 
@@ -66,6 +68,8 @@ t_cmd_path	*create_cmd_struct(char	**envp, char	*cmd)
 void	children_routine(int pipefd[2], t_cmd_path *cmd, int in_fd, int out_fd)
 {
 	close(pipefd[0]);
+	if (VERBOSE == 1)
+		ft_printf("LOGGER: Now redirecting input and output of child.\n");
 	dup2(in_fd, STDIN_FILENO);
 	if (out_fd == -1)
 	{

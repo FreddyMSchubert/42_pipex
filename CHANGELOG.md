@@ -1,8 +1,16 @@
 # pipex by @fschuber Changelog
 
-### todo
-- go crazy on the error handling
-	- what if input too large for pipes?
+### v0.1.2 - 29.11.23
+- Added get_next_line to be able to easily read from stdin, which will be helpful for heredoc
+	- to do this, i updated gnl to be a library for easy use now and in the future (-> https://github.com/FreddyMSchubert/42_get_next_line)
+- forgot to make the last commit yesterday so im making a commit now
+
+---
+
+### v0.1.1 - 28.11.23
+- Added verbose macro, setting it to 1 instead of 0 enables detailed logging
+- reworked shell script, now one script initializes the files (with random values) and another executes the program and compares it to intended output to easily verify correctness
+- started implementation of here_doc handling.
 
 ### v0.1.0 - 28.11.23
 - wrote out execute command function.

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 07:39:06 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/28 11:13:12 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/29 08:49:41 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 
 #include "../submodules/42_ft_printf/ft_printf.h"
 #include "../submodules/42_libft/libft.h"
+#include "../submodules/42_get_next_line/get_next_line.h"
+
+// 1 -> detailed logging
+// 0 -> limited login / handin logging
+#define VERBOSE 1
 
 typedef struct s_cmd_path {
 	char	*path;
 	char	**args;
 }				t_cmd_path;
+
+// HERE DOC FUNCTIONALITY
+void		here_doc(int argc, char **argv, char **envp);
 
 // UTILS
 

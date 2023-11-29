@@ -7,7 +7,8 @@ CFLAGS		:= -Wall -Werror -Wextra \
 				-Wunreachable-code -Ofast -g -fsanitize=address
 HEADER		:= -I../include/
 LIBS		:=	-L../submodules/42_ft_printf/ -lftprintf \
-				-L../submodules/42_libft/ -lft
+				-L../submodules/42_libft/ -lft \
+				-L../submodules/42_get_next_line/ -lftgnl
 
 $(NAME): $(OBJ)
 	@cc $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
