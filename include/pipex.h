@@ -6,13 +6,14 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 07:39:06 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/29 10:25:00 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:22:39 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <sys/wait.h>
 
 #include "../submodules/42_ft_printf/ft_printf.h"
 #include "../submodules/42_libft/libft.h"
@@ -37,7 +38,6 @@ int			here_doc(int argc, char **argv, char **envp);
 
 void		exit_error(char *message);
 void		pex_free_rec(void **blob);
-int			writestr(int fd, char	*message);
 
 // PARENT
 

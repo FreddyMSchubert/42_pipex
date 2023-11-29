@@ -7,6 +7,7 @@ If you are evaluating someone, check these.
 ### BASIC
 
 - Ensure the outfile is actually cleared and not just overwritten. Test this by first outputting something long to the outfile and then something much shorter and see whether you've got a mix of both. (-> O_TRUNC)
+- Output file should be created if it doesn't yet!
 
 ### BONUS
 

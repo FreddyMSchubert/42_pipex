@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:40:30 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/28 17:27:44 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:03:34 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ static char	*get_command_path(char **envp, char *command)
 	return (NULL);
 }
 
+/*
+	@brief	Creates a path struct consisting of a path string
+	@brief	and the arguments as an array of strings
+*/
 t_cmd_path	*create_cmd_struct(char	**envp, char	*cmd)
 {
 	t_cmd_path	*path;

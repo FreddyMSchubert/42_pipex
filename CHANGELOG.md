@@ -1,5 +1,10 @@
 # pipex by @fschuber Changelog
 
+### v0.1.4 - 29.11.23
+- Added basic explanatory comments to every function.
+- spent two hours trying to get docker to work due to weird makefile stuff.
+	- there are some errors. unfixed errors.
+
 ### v0.1.3 - 29.11.23
 - Made input side of here_doc work. It wasn't that hard. It's all in here_doc.c
 - made a fix to file opening by adding O_TRUNC, this now clears the output file every time we run the program in non-here_doc-mode.

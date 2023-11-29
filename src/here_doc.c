@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:34:45 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/29 10:32:55 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:50:56 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	add_heredoc(void)
 		write(STDIN_FILENO, "\033[0m", 4);
 }
 
+/*
+	@brief	Checks if theres a limiter. If there isn't, it appends the message
+	@brief	to the inputted pipe. If there is, it stops data input.
+*/
 static int	write_to_pipe_until_limiter(int pipe_write_fd, \
 										char *limiter, \
 										char *message)
@@ -44,6 +48,10 @@ static int	write_to_pipe_until_limiter(int pipe_write_fd, \
 	return (0);
 }
 
+/*
+	@brief	This handles the input. It gets the data inputted and sends it to
+	@brief	the write_to_pipe_until_limiter function to save it.
+*/
 static int	read_from_input_until_limiter(char	*limiter)
 {
 	int		pipefd[2];
@@ -60,6 +68,7 @@ static int	read_from_input_until_limiter(char	*limiter)
 		if (write_to_pipe_until_limiter(pipefd[1], limiter, gnl_return) == 1)
 		{
 			close(pipefd[1]);
+			free(gnl_return);
 			return (pipefd[0]);
 		}
 		add_heredoc();
