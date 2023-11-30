@@ -1,5 +1,11 @@
 # pipex by @fschuber Changelog
 
+### v0.1.5 - 30.11.23
+- fixed final memory leak i am aware of. 1 byte was leaking because in here_doc when limiter was encountered we stopped calling get next line before it reached eof. instead, we now execute get next line once with an invalid file descriptor to have it free everything. fixed.
+- some makefile changes
+
+---
+
 ### v0.1.4 - 29.11.23
 - Added basic explanatory comments to every function.
 - spent two hours trying to get docker to work due to weird makefile stuff.

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:34:45 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/29 12:50:56 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:36:09 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ static int	write_to_pipe_until_limiter(int pipe_write_fd, \
 		if (message[counter] != limiter[counter])
 			break ;
 		if (counter == ft_strlen(limiter) - 1)
-			return (1);
+			return (free(message), 1);
 		counter++;
 	}
 	write(pipe_write_fd, message, ft_strlen(message));
+	free (message);
 	return (0);
 }
 
@@ -54,8 +55,8 @@ static int	write_to_pipe_until_limiter(int pipe_write_fd, \
 */
 static int	read_from_input_until_limiter(char	*limiter)
 {
-	int		pipefd[2];
-	char	*gnl_return;
+	int			pipefd[2];
+	char		*gnl_return;
 
 	if (VERBOSE == 1)
 		ft_printf("LOGGER: Now reading from input until delimiter.\n");
@@ -68,11 +69,10 @@ static int	read_from_input_until_limiter(char	*limiter)
 		if (write_to_pipe_until_limiter(pipefd[1], limiter, gnl_return) == 1)
 		{
 			close(pipefd[1]);
-			free(gnl_return);
+			get_next_line(-1);
 			return (pipefd[0]);
 		}
 		add_heredoc();
-		free(gnl_return);
 		gnl_return = get_next_line(STDIN_FILENO);
 	}
 	close(pipefd[1]);

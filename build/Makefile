@@ -8,7 +8,7 @@ FTPRINTF_DIR:= ../submodules/42_ft_printf
 FTGNL_DIR   := ../submodules/42_get_next_line
 
 CFLAGS		:= -Wall -Werror -Wextra \
-				-Wunreachable-code -Ofast -g #-fsanitize=address
+				-Wunreachable-code -Ofast #-g #-fsanitize=address
 HEADER		:= -I../include/
 LIBS :=		-L$(LIBFT_DIR) -lft \
 			-L$(FTPRINTF_DIR) -lftprintf \
@@ -38,13 +38,15 @@ fclean: clean
 	make -C $(FTPRINTF_DIR) fclean
 	make -C $(FTGNL_DIR) fclean
 	rm -f $(NAME)
-re: fclean libft ftprintf ftgnl all
+re: fclean all
 
 comp:
 	@make all
 	@make clean
 	@clear
 fcomp:
+	@cd ../ && git submodule update --init --recursive
+	@cd ../submodules && norminette
 	@cd ../include && norminette
 	@cd ../src && norminette
 	@make re
