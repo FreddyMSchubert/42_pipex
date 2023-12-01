@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:34:45 by fschuber          #+#    #+#             */
-/*   Updated: 2023/11/30 18:36:09 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/12/01 07:04:49 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	read_from_input_until_limiter(char	*limiter)
 	@brief	Similar to main but for when here_doc is activated.
 	@brief	e.g. takes input from stdin instead of file.
 */
-int	here_doc(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	int		out_fd;
 	int		in_fd;
@@ -94,7 +94,7 @@ int	here_doc(int argc, char **argv, char **envp)
 	if (argc < 4)
 		exit_error("ERROR: Invalid inputs, check args & file permissions.\n");
 	out_fd = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT, 0777);
-	if (out_fd < 0)
+	if (out_fd < 0 || access(argv[argc - 1], W_OK) != 0)
 		exit_error("ERROR trying to access output file.\n");
 	in_fd = read_from_input_until_limiter(argv[2]);
 	counter = 2;

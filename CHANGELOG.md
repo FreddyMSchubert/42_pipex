@@ -1,5 +1,13 @@
 # pipex by @fschuber Changelog
 
+### v0.1.6 - 1.12.23
+- some efficiency improvements in exit_error()
+- added out_fd write error check in here_doc & main
+- had to split bonus and normal files into seperate executables etc
+	- some therefore resulting makefile changes
+
+---
+
 ### v0.1.5 - 30.11.23
 - fixed final memory leak i am aware of. 1 byte was leaking because in here_doc when limiter was encountered we stopped calling get next line before it reached eof. instead, we now execute get next line once with an invalid file descriptor to have it free everything. fixed.
 - some makefile changes
