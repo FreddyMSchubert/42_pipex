@@ -1,5 +1,11 @@
 # pipex by @fschuber Changelog
 
+### v0.1.6 - 1.12.23
+- After first splitting the bonus and main part into two, i now reverted and made this the master.
+
+
+---
+
 ### v0.1.5 - 30.11.23
 - fixed final memory leak i am aware of. 1 byte was leaking because in here_doc when limiter was encountered we stopped calling get next line before it reached eof. instead, we now execute get next line once with an invalid file descriptor to have it free everything. fixed.
 - some makefile changes
