@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 07:39:06 by fschuber          #+#    #+#             */
-/*   Updated: 2023/12/01 07:14:39 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:46:48 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 // 1 -> detailed logging
 // 0 -> limited login / handin logging
-#define VERBOSE 0
+#define VERBOSE 1
 
 typedef struct s_cmd_path {
 	char	*path;

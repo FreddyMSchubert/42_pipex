@@ -1,5 +1,8 @@
 # pipex by @fschuber Changelog
 
+### v0.1.7 - 1.12.23
+- small fix in pipex.c
+
 ### v0.1.6 - 1.12.23
 - some efficiency improvements in exit_error()
 - added out_fd write error check in here_doc & main

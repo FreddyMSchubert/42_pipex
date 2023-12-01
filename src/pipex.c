@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 06:26:25 by fschuber          #+#    #+#             */
-/*   Updated: 2023/12/01 06:56:31 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:50:13 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 	if (in_fd < 0)
 		exit_error("ERROR trying to access input or output files.\n");
 	in_fd = execute_command(in_fd, argv[2], -1, envp);
-	in_fd = execute_command(in_fd, argv[3], -1, envp);
+	in_fd = execute_command(in_fd, argv[3], out_fd, envp);
 	close(in_fd);
 	close(out_fd);
 	return (0);
