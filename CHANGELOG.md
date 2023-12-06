@@ -1,5 +1,8 @@
 # pipex by @fschuber Changelog
 
+### v0.1.7 - 6.12.23
+- Fixed program crashing when there were no parameters inputted.
+
 ### v0.1.6 - 1.12.23
 - After first splitting the bonus and main part into two, i now reverted and made this the master.
 

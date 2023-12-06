@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **envp)
 	int		out_fd;
 	int		counter;
 
-	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+	if (argv[1] && ft_strncmp(argv[1], "here_doc", 8) == 0)
 		return (here_doc(argc, argv, envp));
 	if (argc < 4 || access(argv[1], R_OK) != 0)
 		exit_error("ERROR: Invalid inputs, check args & file permissions.\n");
